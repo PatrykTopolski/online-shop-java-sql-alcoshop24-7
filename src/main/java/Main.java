@@ -12,7 +12,8 @@ public class Main{
 
                 System.out.print(product.getId() + " ");
                 System.out.print(product.getName()+ " ");
-                System.out.print(product.getPrice()+ " ");
+                System.out.print(product.getPrice()+ "zł ");
+                System.out.print(product.getAlcoholContent()+"% ");
                 System.out.print(product.getExpirationDate());
                 System.out.println();
             }
