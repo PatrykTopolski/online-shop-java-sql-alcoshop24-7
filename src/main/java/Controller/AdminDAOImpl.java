@@ -1,4 +1,4 @@
-import Model.Product;
+package Controller;
 
 import java.sql.*;
 import java.text.DateFormat;
@@ -6,10 +6,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import Model.Product;
 
-public class ProductDAOImpl implements ProductDAO {
+public class AdminDAOImpl implements AdminDAO {
     private List<Product> allProducts;
     private final DateFormat FORMAT = new SimpleDateFormat("yyyy-mm-dd");
+
 
     @Override
     public List<Product> getAllProducts() throws SQLException {

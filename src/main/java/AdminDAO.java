@@ -3,7 +3,7 @@ import Model.Product;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface ProductDAO {
+public interface AdminDAO {
 
     List<Product> getAllProducts() throws SQLException;
 
