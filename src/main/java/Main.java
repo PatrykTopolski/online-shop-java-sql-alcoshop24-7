@@ -9,9 +9,12 @@ public class Main{
         try {
             allProducts = new ArrayList<>(dao.getAllProducts());
             for(Product product : allProducts){
-                System.out.println(product.getId());
-                System.out.println(product.getPrice());
-                System.out.println(product.getExpirationDate());
+
+                System.out.print(product.getId() + " ");
+                System.out.print(product.getName()+ " ");
+                System.out.print(product.getPrice()+ " ");
+                System.out.print(product.getExpirationDate());
+                System.out.println();
             }
         } catch (SQLException e) {
             e.printStackTrace();

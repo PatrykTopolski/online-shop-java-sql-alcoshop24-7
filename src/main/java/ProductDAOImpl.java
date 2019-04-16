@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ProductDAOImpl implements ProductDAO {
     private List<Product> allProducts;
-    private final DateFormat FORMAT = new SimpleDateFormat("MMMM d, yyyy");
+    private final DateFormat FORMAT = new SimpleDateFormat("yyyy-mm-dd");
 
     @Override
     public List<Product> getAllProducts() throws SQLException {
@@ -18,19 +18,20 @@ public class ProductDAOImpl implements ProductDAO {
             Statement stmt = connection.createStatement();
             connection.setAutoCommit(false);
 
-            ResultSet resultSet = stmt.executeQuery( "SELECT * FROM Products;" );
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM Products;");
 
             while (resultSet.next()){
                 int id = resultSet.getInt("ID");
+                String name = resultSet.getString("Name");
                 int typeID = resultSet.getInt("TypeID");
                 float price = resultSet.getFloat("Price");
                 float alcoholContent = resultSet.getFloat("Vol.(%)");
                 float volume = resultSet.getFloat("Vol(l)");
                 int amount = resultSet.getInt("Amount");
-                Date expDate = (Date) FORMAT.parse(resultSet.getString("ExpDate"));
-
-                Product product = new Product(id, typeID, price, alcoholContent,
-                volume, amount, expDate);
+                java.util.Date expDate = FORMAT.parse(resultSet.getString("ExpDate"));
+                java.sql.Date sqlExpDate = new java.sql.Date(expDate.getTime());
+                Product product = new Product(id, name, typeID, price, alcoholContent,
+                volume, amount, sqlExpDate);
                 
                 allProducts.add(product);
             }

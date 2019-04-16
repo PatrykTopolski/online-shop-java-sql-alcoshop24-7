@@ -3,7 +3,7 @@ import java.util.List;
 
 public interface ProductDAO {
 
-    public List<Product> getAllProducts() throws SQLException;
+    List<Product> getAllProducts() throws SQLException;
 
 
     // public Product getProduct(int id);

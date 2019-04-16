@@ -3,6 +3,7 @@ import java.text.SimpleDateFormat;
 
 public class Product {
     private int id;
+    private String name;
     private int typeId;
     private float price;
     private float alcoholContent;
@@ -11,10 +12,11 @@ public class Product {
     private Date expirationDate;
 
     
-    public Product(int id, int typeId, float price, float alcoholContent,
+    public Product(int id, String name, int typeId, float price, float alcoholContent,
         float volume, int amount, Date expirationDate){
         
         this.id = id;
+        this.name = name;
         this.typeId = typeId;
         this.price = price;
         this. alcoholContent = alcoholContent;
@@ -30,6 +32,10 @@ public class Product {
     public void setId(int id){
         this.id = id;
     }
+
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name;}
 
     public int getTypeId(){
         return typeId;
