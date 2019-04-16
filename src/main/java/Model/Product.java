@@ -1,5 +1,7 @@
+package Model;
+
 import java.sql.Date;
-import java.text.SimpleDateFormat;
+
 
 public class Product {
     private int id;

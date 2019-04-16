@@ -1,3 +1,5 @@
+import Model.Product;
+
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
