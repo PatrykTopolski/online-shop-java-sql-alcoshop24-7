@@ -1,0 +1,8 @@
+# IML and XML
+*.iml
+pom.xml
+
+# Folders
+/.idea
+/test
+/resources
