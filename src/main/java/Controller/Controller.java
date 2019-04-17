@@ -20,7 +20,9 @@ public class Controller{
         }
 
         Product productToChange = allProducts.get(5);
-        admin.refillTheStock(productToChange, 69);
+        admin.refillTheStock(productToChange, 500);
+
+        admin.CreateProduct(productToChange);
 
         for(User customer : allCustomers){
             System.out.println(customer.getLogin());

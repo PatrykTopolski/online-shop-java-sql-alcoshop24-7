@@ -21,4 +21,8 @@ public class AdminController{
         adminDAO.refillTheStock(product, amount);
     }
 
+    public void CreateProduct(Product product) throws SQLException {
+        adminDAO.createNewProduct(product);
+    }
+
 }

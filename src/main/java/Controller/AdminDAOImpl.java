@@ -87,12 +87,21 @@ public class AdminDAOImpl implements AdminDAO {
     public void refillTheStock(Product product, int amount) throws SQLException {
         try {Class.forName("org.sqlite.JDBC");
             Connection connection = DriverManager.getConnection("jdbc:sqlite:alcoshop.db");
-            Statement stmt = connection.createStatement();
+            PreparedStatement stmt;
             connection.setAutoCommit(false);
             String sqlStatments = "update Products "
-                                + " set Amount="+ amount
-                                + " where id=" + product.getId();
-            stmt.executeUpdate(sqlStatments);
+                    + " set Amount= ?"
+                    + " where id= ?";
+
+            stmt = connection.prepareStatement(sqlStatments);
+
+            stmt.setInt(1, amount);
+            stmt.setInt(2, product.getId());
+
+            stmt.executeUpdate();
+
+
+
 
             stmt.close();
             connection.commit();
@@ -110,7 +119,7 @@ public class AdminDAOImpl implements AdminDAO {
             Statement stmt = connection.createStatement();
             connection.setAutoCommit(false);
             String sqlSentence = "";
-
+            //TODO
         }catch (ClassNotFoundException ex){
             System.err.println(ex.getMessage());
         }
@@ -121,8 +130,35 @@ public class AdminDAOImpl implements AdminDAO {
 
         try {Class.forName("org.sqlite.JDBC");
             Connection connection = DriverManager.getConnection("jdbc:sqlite:alcoshop.db");
-            Statement stmt = connection.createStatement();
+            PreparedStatement stmt;
             connection.setAutoCommit(false);
+            String sqlStatments = "insert into Products"
+                    + "(ID, Name, TypeID, Price, [Vol.(%)], [Vol(l)], Amount, ExpDate)"
+                    + " values (?, ? ,? ,? ,? ,? , ?, ?)";
+
+            stmt = connection.prepareStatement(sqlStatments);
+
+            List<Product> products = new ArrayList<>(getAllProducts());
+
+            stmt.setInt(1, products.size() + 1);
+            stmt.setString(2, product.getName());
+            stmt.setInt(3, product.getTypeId());
+            stmt.setFloat(4, product.getPrice());
+            stmt.setFloat(5, product.getAlcoholContent());
+            stmt.setFloat(6, product.getVolume());
+            stmt.setInt(7, product.getAmount());
+            stmt.setString(8, product.getExpirationDate().toString());
+
+
+            stmt.executeUpdate();
+
+
+
+
+            stmt.close();
+            connection.commit();
+            connection.close();
+
 
         }catch (ClassNotFoundException ex){
             System.err.println(ex.getMessage());
