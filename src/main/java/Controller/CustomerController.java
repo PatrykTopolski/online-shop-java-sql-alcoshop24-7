@@ -21,11 +21,11 @@ public class CustomerController{
         return dao.getOrder(orderID);
     }
 
-    public Product getProductById(int productID){
+    public Product getProductById(int productID)throws SQLException{
         return dao.getProductById(productID);
     }
 
-    public void makeNewOrder(int ID, int basketID, int userID){
+    public void makeNewOrder(int ID, int basketID, int userID)throws SQLException{
         dao.makeNewOrder(ID, basketID, userID);
     }
 
