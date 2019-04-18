@@ -49,7 +49,7 @@ public class Order{
 
 
     public String toString(){
-        String result = String.format("Order ID: %d, Creation date: %t",
+        String result = String.format("Order ID: %d, Creation date: %h",
                 getID(), getCreationDate());
         return result;
     }

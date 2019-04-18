@@ -88,7 +88,7 @@ public class Product {
     }
 
     public String toString(){
-        String result = String.format("Product: %s, price: %d",
+        String result = String.format("Product: %s, price: %f",
                 getName(), getPrice());
         return result;
     }
