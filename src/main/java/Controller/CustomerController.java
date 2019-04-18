@@ -11,7 +11,7 @@ public class CustomerController{
     CustomerDAOImpl dao = new CustomerDAOImpl();
     CustomerView view = new CustomerView();
 
-    public void runCustomerController{
+    public void runCustomerController(){
         view.printMenu();
     }
 

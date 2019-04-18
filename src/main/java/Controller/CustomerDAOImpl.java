@@ -82,14 +82,14 @@ public class CustomerDAOImpl implements CustomerDAO {
         ResultSet resultSet = null;
 
         try {
-            stmt = con.prepareStatement("SELECT * FROM Orders WHERE CustomerId = ?");
+            stmt = con.prepareStatement("SELECT * FROM Orders WHERE CustomerID = ?");
             con.setAutoCommit(false);
             stmt.setInt(1, customerId);
             resultSet = stmt.executeQuery();
 
             int orderID = resultSet.getInt("ID");
-            int basketID = resultSet.getInt("basketID");
-            int userID = resultSet.getInt("userID");
+            int basketID = resultSet.getInt("BasketID");
+            int userID = resultSet.getInt("CustomerID");
             myOrders.add(new Order(orderID, basketID, userID));
 
             con.commit();
@@ -116,8 +116,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 
             //create Order Object
             int orderID = resSet.getInt("ID");
-            int basketID = resSet.getInt("basketID");
-            int userID = resSet.getInt("userID");
+            int basketID = resSet.getInt("BasketID");
+            int userID = resSet.getInt("CustomerID");
             order = new Order(orderID, basketID, userID);
 
             //close connection
