@@ -6,6 +6,7 @@ import Model.Order;
 import Model.User;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class AdminView {
     public void printAllProducts(List<Product> products){
@@ -28,5 +29,19 @@ public class AdminView {
              ) {
             System.out.println("ID: " + order.getID() + ", BasketID: " + order.getBasketID()+ ", CustomerID: " + order.getUserID());
         }
+    }
+
+    public String getStringAnswer(String message){
+        System.out.println(message);
+        Scanner sc = new Scanner(System.in);
+        String answer = sc.nextLine();
+        return answer;
+    }
+
+    public int getIntAnswer(String message){
+        System.out.println(message);
+        Scanner sc = new Scanner(System.in);
+        int answer = sc.nextInt();
+        return answer;
     }
 }
