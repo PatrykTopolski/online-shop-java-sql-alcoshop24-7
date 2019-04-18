@@ -47,7 +47,11 @@ public class Order{
         return false;
     }
 
-
+    public String toString(){
+        String result = String.format("Order ID: %d, Creation date: %h",
+                getID(), getCreationDate());
+        return result;
+    }
 
 
     private enum Status{
