@@ -11,12 +11,6 @@ public class CustomerController{
     CustomerDAOImpl dao = new CustomerDAOImpl();
     CustomerView view = new CustomerView();
 
-    public void runCustomerController()throws SQLException{
-        view.printMenu();
-        view.printProducts(dao.getAllProducts());
-        view.printOrders(dao.getOrders(1));
-
-    }
 
     public List<Product> getAllProducts() throws SQLException{
         return dao.getAllProducts();
