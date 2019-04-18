@@ -85,18 +85,13 @@ public class CustomerDAOImpl implements CustomerDAO {
             con.setAutoCommit(false);
             stmt = con.prepareStatement("SELECT * FROM Orders WHERE CustomerID=?");
             stmt.setInt(1, customerId);
-            System.out.println("query sucesfully done");
-
+            
             resultSet = stmt.executeQuery();
-            System.out.println(resultSet);
 
             while(resultSet.next()) {
                 int orderID = resultSet.getInt("ID");
-                System.out.println(orderID);
                 int basketID = resultSet.getInt("BasketID");
-                System.out.println(basketID);
                 int userID = resultSet.getInt("CustomerID");
-                System.out.println(userID);
                 myOrders.add(new Order(orderID, basketID, userID));}
 
             con.commit();
@@ -121,13 +116,11 @@ public class CustomerDAOImpl implements CustomerDAO {
             statm.setInt(1, orderId);
             resSet = statm.executeQuery();
 
-            //create Order Object
             int orderID = resSet.getInt("ID");
             int basketID = resSet.getInt("BasketID");
             int userID = resSet.getInt("CustomerID");
             order = new Order(orderID, basketID, userID);
 
-            //close connection
             conn.commit();
             conn.close();
 
@@ -143,19 +136,11 @@ public class CustomerDAOImpl implements CustomerDAO {
         ResultSet resultSet2 = null;
 
         try {
-            //creating connection
             connection.setAutoCommit(false);
-
-            //create statement
             PreparedStatement statement = connection.prepareStatement("SELECT name FROM Products WHERE id=?");
-
-            // set statement
             statement.setInt(1, productID);
-
-            //execute query
             resultSet2 = statement.executeQuery();
 
-            //create result product from query result
             int id = resultSet2.getInt("ID");
             String name = resultSet2.getString("Name");
             int typeID = resultSet2.getInt("TypeID");
@@ -168,7 +153,6 @@ public class CustomerDAOImpl implements CustomerDAO {
             product = new Product(id, name, typeID, price, alcoholContent,
                     volume, amount, sqlExpDate);
 
-            //close statement and connection
             resultSet2.close();
             statement.close();
             connection.close();
@@ -182,7 +166,6 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     public void makeNewOrder(int ID, int basketID, int userID) {
-        //Order newOrder = (ID, basketID, userID);
         Statement newOrStat = null;
         Connection newOrCon = setConnection();
 
