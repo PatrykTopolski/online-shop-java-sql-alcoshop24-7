@@ -33,7 +33,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
             ResultSet resultSet = stmt.executeQuery("SELECT * FROM Products;");
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 int id = resultSet.getInt("ID");
                 String name = resultSet.getString("Name");
                 int typeID = resultSet.getInt("TypeID");
@@ -58,12 +58,9 @@ public class CustomerDAOImpl implements CustomerDAO {
         return allProducts;
     }
 
-    public Basket getBasket(int orderID){
+    public Basket getBasket(int orderID) {
         return null;
     }
-
-
-
 
 
     private Connection setConnection() {
@@ -78,7 +75,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
 
-    public List<Order> getOrders(int customerId) throws SQLException{
+    public List<Order> getOrders(int customerId) throws SQLException {
         myOrders = new ArrayList<>();
         Connection con = setConnection();
         PreparedStatement stmt = null;
@@ -100,21 +97,22 @@ public class CustomerDAOImpl implements CustomerDAO {
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
+        }
 
         return myOrders;
     }
 
-    public Order getOrder(int orderId) throws SQLException{
+    public Order getOrder(int orderId) throws SQLException {
         Connection conn = setConnection();
         PreparedStatement statm = null;
         ResultSet resSet = null;
         Order order = null;
 
         try {
-            statm = con.prepareStatement("SELECT * FROM Orders WHERE orderId = ?");
+            statm = conn.prepareStatement("SELECT * FROM Orders WHERE orderId = ?");
             conn.setAutoCommit(false);
             statm.setInt(1, orderId);
-            resSet = stmt.executeQuery();
+            resSet = statm.executeQuery();
 
             //create Order Object
             int orderID = resSet.getInt("ID");
@@ -132,7 +130,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         return order;
     }
 
-    public Product getProductById(int productID){
+    public Product getProductById(int productID) {
         Product product = null;
         Connection connection = setConnection();
         ResultSet resultSet2 = null;
@@ -142,7 +140,7 @@ public class CustomerDAOImpl implements CustomerDAO {
             connection.setAutoCommit(false);
 
             //create statement
-            PreparedStatement statement = connection.prepareStatement("SELECT name FROM Products WHERE id=?")
+            PreparedStatement statement = connection.prepareStatement("SELECT name FROM Products WHERE id=?");
 
             // set statement
             statement.setInt(1, productID);
@@ -151,36 +149,49 @@ public class CustomerDAOImpl implements CustomerDAO {
             resultSet2 = statement.executeQuery();
 
             //create result product from query result
-            int id = resultSet.getInt("ID");
-            String name = resultSet.getString("Name");
-            int typeID = resultSet.getInt("TypeID");
-            float price = resultSet.getFloat("Price");
-            float alcoholContent = resultSet.getFloat("Vol.(%)");
-            float volume = resultSet.getFloat("Vol(l)");
-            int amount = resultSet.getInt("Amount");
-            java.util.Date expDate = FORMAT.parse(resultSet.getString("ExpDate"));
+            int id = resultSet2.getInt("ID");
+            String name = resultSet2.getString("Name");
+            int typeID = resultSet2.getInt("TypeID");
+            float price = resultSet2.getFloat("Price");
+            float alcoholContent = resultSet2.getFloat("Vol.(%)");
+            float volume = resultSet2.getFloat("Vol(l)");
+            int amount = resultSet2.getInt("Amount");
+            java.util.Date expDate = FORMAT.parse(resultSet2.getString("ExpDate"));
             java.sql.Date sqlExpDate = new java.sql.Date(expDate.getTime());
             product = new Product(id, name, typeID, price, alcoholContent,
                     volume, amount, sqlExpDate);
 
-
             //close statement and connection
-            resultSet.close();
+            resultSet2.close();
             statement.close();
             connection.close();
 
-        }catch (Exception exception){
+        } catch (Exception exception) {
             System.err.println(exception);
-            System.exit(0);
+
         }
         return product;
 
     }
 
-    public Order makeNewOrder(int ID, int basketID, int userID){
-            Order newOrder = null;
+    public void makeNewOrder(int ID, int basketID, int userID) {
+        //Order newOrder = (ID, basketID, userID);
+        Statement newOrStat = null;
+        Connection newOrCon = setConnection();
 
+        try {
+            newOrCon.setAutoCommit(false);
+            newOrStat = newOrCon.createStatement();
+            String sql = "INSERT INTO Orders " +
+                    "VALUES (ID, basketID, userID),";
+            newOrStat.executeUpdate(sql);
+        } catch (Exception exception) {
+            System.err.println(exception);
         }
+    }
 
-
+//    public boolean isAvailable() throws SQLException{
+//        boolean answer = null;
+//        return answer;
+//    }
 }
