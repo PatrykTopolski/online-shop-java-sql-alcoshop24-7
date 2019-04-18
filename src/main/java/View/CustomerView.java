@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import Model.Order;
 import Model.Product;
+import java.util.Scanner;
 
 public class CustomerView{
 
@@ -27,7 +28,19 @@ public class CustomerView{
         System.out.println("1. See all products");
         System.out.println("2. See all your orders");
         System.out.println("3. See chosen product");
+    }
 
+    public String getStringAnswer(String message){
+        System.out.println(message);
+        Scanner sc = new Scanner(System.in);
+        String answer = sc.nextLine();
+        return answer;
+    }
 
+    public int getIntAnswer(String message){
+        System.out.println(message);
+        Scanner sc = new Scanner(System.in);
+        int answer = sc.nextInt();
+        return answer;
     }
 }
