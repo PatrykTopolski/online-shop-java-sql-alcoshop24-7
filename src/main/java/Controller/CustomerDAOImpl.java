@@ -82,15 +82,22 @@ public class CustomerDAOImpl implements CustomerDAO {
         ResultSet resultSet = null;
 
         try {
-            stmt = con.prepareStatement("SELECT * FROM Orders WHERE CustomerID = ?");
             con.setAutoCommit(false);
+            stmt = con.prepareStatement("SELECT * FROM Orders WHERE CustomerID=?");
             stmt.setInt(1, customerId);
-            resultSet = stmt.executeQuery();
+            System.out.println("query sucesfully done");
 
-            int orderID = resultSet.getInt("ID");
-            int basketID = resultSet.getInt("BasketID");
-            int userID = resultSet.getInt("CustomerID");
-            myOrders.add(new Order(orderID, basketID, userID));
+            resultSet = stmt.executeQuery();
+            System.out.println(resultSet);
+
+            while(resultSet.next()) {
+                int orderID = resultSet.getInt("ID");
+                System.out.println(orderID);
+                int basketID = resultSet.getInt("BasketID");
+                System.out.println(basketID);
+                int userID = resultSet.getInt("CustomerID");
+                System.out.println(userID);
+                myOrders.add(new Order(orderID, basketID, userID));}
 
             con.commit();
             con.close();

@@ -12,7 +12,13 @@ public class Controller{
         List<Product> allProducts = new ArrayList<>(admin.getAllProducts());
 
         for(Product product : allProducts){
-            System.out.println(product.getName());
+            System.out.println(product);
         }
+
+        CustomerController customer = new CustomerController();
+        customer.runCustomerController();
+
     }
+
+
 }
