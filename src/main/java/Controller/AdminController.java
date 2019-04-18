@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.*;
 import Model.Product;
 import Model.User;
+import Model.Order;
 
 public class AdminController{
     private AdminDAOImpl adminDAO = new AdminDAOImpl();
@@ -23,6 +24,10 @@ public class AdminController{
 
     public void CreateProduct(Product product) throws SQLException {
         adminDAO.createNewProduct(product);
+    }
+
+    public List<Order> getAllOrders() throws  SQLException{
+        return adminDAO.getOrders();
     }
 
 }

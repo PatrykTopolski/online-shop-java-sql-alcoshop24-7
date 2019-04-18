@@ -12,6 +12,7 @@ import Model.*;
 public class AdminDAOImpl implements AdminDAO {
     private List<Product> allProducts;
     private List<User> allCustomers;
+    private List<Order> allOrders;
     private final DateFormat FORMAT = new SimpleDateFormat("yyyy-mm-dd");
 
 
@@ -167,15 +168,29 @@ public class AdminDAOImpl implements AdminDAO {
 
     @Override
     public List<Order> getOrders() throws  SQLException {
+        allOrders = new ArrayList<>();
         try {Class.forName("org.sqlite.JDBC");
             Connection connection = DriverManager.getConnection("jdbc:sqlite:alcoshop.db");
             Statement stmt = connection.createStatement();
             connection.setAutoCommit(false);
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM Orders;");
+            while (resultSet.next()){
+                int id = resultSet.getInt("ID");
+                int customerId = resultSet.getInt("CustomerID");
+                int basketID = resultSet.getInt("BasketID");
+                Order order = new Order(id, basketID, customerId);
+                allOrders.add(order);
+
+            }
+            resultSet.close();
+            stmt.close();
+            connection.commit();
+            connection.close();
 
         }catch (ClassNotFoundException ex){
             System.err.println(ex.getMessage());
         }
-        return null;
+        return allOrders;
     }
 
     @Override
