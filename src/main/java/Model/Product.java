@@ -86,4 +86,10 @@ public class Product {
     public void setExpirationDate(Date date){
         this.expirationDate = date;
     }
+
+    public String toString(){
+        String result = String.format("Product: %s, price: %d",
+                getName(), getPrice());
+        return result;
+    }
 }

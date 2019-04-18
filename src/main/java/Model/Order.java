@@ -48,12 +48,20 @@ public class Order{
     }
 
 
+    public String toString(){
+        String result = String.format("Order ID: %d, Creation date: %t",
+                getID(), getCreationDate());
+        return result;
+    }
+
 
 
     private enum Status{
         ORDERED,
         PAYED,
         COMPLETED;
+
+
     }
 
 
