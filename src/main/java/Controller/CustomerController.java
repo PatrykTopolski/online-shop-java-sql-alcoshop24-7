@@ -5,9 +5,15 @@ import java.util.*;
 
 import Model.Order;
 import Model.Product;
+import View.CustomerView;
 
 public class CustomerController{
     CustomerDAOImpl dao = new CustomerDAOImpl();
+    CustomerView view = new CustomerView();
+
+    public void runCustomerController{
+        view.printMenu();
+    }
 
     public List<Product> getAllProducts() throws SQLException{
         return dao.getAllProducts();
@@ -27,7 +33,9 @@ public class CustomerController{
 
     public void makeNewOrder(int ID, int basketID, int userID)throws SQLException{
         dao.makeNewOrder(ID, basketID, userID);
+
     }
+
 
 
 }
