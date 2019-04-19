@@ -72,7 +72,7 @@ public class Controller{
             int typeId = adminView.getIntAnswer("Enter type id (number between 1 and 6): ");
             float price = adminView.getFloatAnswer("Enter price separated by dot: ");
             float alcoholContent = adminView.getFloatAnswer("Enter vol% of product: ");
-            float volume = adminView.getFloatAnswer("Enter quantity pf the product(L, for example 0.5 L): ");
+            float volume = adminView.getFloatAnswer("Enter quantity pf the product(for example 0.5 L): ");
             int amount = adminView.getIntAnswer("Enter amount of the product in stock");
             int year = adminView.getIntAnswer("Enter year (exp date yyyy): ");
             int month = adminView.getIntAnswer("Enter month (exp date mm): ");;
