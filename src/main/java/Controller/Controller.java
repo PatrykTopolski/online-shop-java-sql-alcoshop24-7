@@ -98,7 +98,13 @@ public class Controller{
         }
         else if(answer == 2){
             List<Order> ordersToPrint = customerController.getOrders(currentCustomer.getId());
-            customerView.printOrders(ordersToPrint);
+            if (ordersToPrint != null){
+                customerView.printOrders(ordersToPrint);
+            }
+            else{
+                customerView.noOrdersMessage();
+            }
+
         }
         else if (answer == 3){
             int chosenID = customerView.getIntAnswer("Choose ID to see product");

@@ -52,4 +52,8 @@ public class CustomerView{
         int answer = sc.nextInt();
         return answer;
     }
+
+    public void noOrdersMessage(){
+        System.out.println("You haven't done any order yet");
+    }
 }
