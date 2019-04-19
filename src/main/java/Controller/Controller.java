@@ -2,40 +2,17 @@ package Controller;
 
 import java.sql.SQLException;
 import java.util.*;
-
-import Model.Customer;
+import Model.User;
+import Model.Order;
 import Model.Product;
-
+import View.AdminView;
 import View.CustomerView;
 
 
-public class Controller{
-    private CustomerController customerController = new CustomerController();
-    private CustomerView customerView = new CustomerView();
-
-    public void handleCustomer() throws SQLException{
-        customerView.printMenu();
-        int answer = customerView.getIntAnswer("Choose option from menu");
-
-        if (answer == 1){
-            customerView.printProducts(customerController.getAllProducts());
-        }
-//        else if(answer == 2){
-//            customerView.printOrders(customerController.getOrders());
-            //potrzeba jakos dostac sie do id customera z poziomu controllera
-        //}
-        else if (answer == 3){
-            int chosenID = customerView.getIntAnswer("Choose ID to see product");
-            customerView.printProduct(customerController.getProductById(chosenID));
-        }
 
 
-    }
 
 
-import Model.User;
-import Model.Order;
-import View.AdminView;
 
 
 public class Controller{
@@ -43,6 +20,9 @@ public class Controller{
     private AdminView adminView = new AdminView();
     private AdminController admin = new AdminController();
     boolean adminConsoleHandler = true;
+    private CustomerController customerController = new CustomerController();
+    private CustomerView customerView = new CustomerView();
+    private boolean customerConsoleHandler = true;
 
     public void handleShop() throws SQLException{
 
@@ -58,7 +38,7 @@ public class Controller{
                 handleAdmin();
             }
         }else if (userType == customerType){
-            System.out.println("im customer");
+            while(customerConsoleHandler){handleCustomer();}
         }else {
             System.out.println("wrong login or password");
         }
@@ -94,7 +74,23 @@ public class Controller{
         }
     }
 
+    public void handleCustomer() throws SQLException{
+        customerView.printMenu();
+        int answer = customerView.getIntAnswer("Choose option from menu");
+
+        if (answer == 1){
+            customerView.printProducts(customerController.getAllProducts());
+        }
+//        else if(answer == 2){
+//            customerView.printOrders(customerController.getOrders());
+        //potrzeba jakos dostac sie do id customera z poziomu controllera
+        //}
+        else if (answer == 3){
+            int chosenID = customerView.getIntAnswer("Choose ID to see product");
+            customerView.printProduct(customerController.getProductById(chosenID));
+        }
 
 
+    }
 
 }
