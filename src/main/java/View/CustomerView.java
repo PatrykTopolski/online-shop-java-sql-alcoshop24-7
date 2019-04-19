@@ -18,6 +18,14 @@ public class CustomerView{
         System.out.println(product.toString());
     }
 
+    public void printProductByID(List<Product> products, int chosenID){
+        for (Product product:products) {
+            if(product.getId() == chosenID){
+                System.out.println(product.toString());
+            }
+        }
+    };
+
     public void printProducts(List<Product> products){
         for (Product product:products){
             System.out.println(product.toString());

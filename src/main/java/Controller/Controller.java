@@ -10,11 +10,6 @@ import View.CustomerView;
 
 
 
-
-
-
-
-
 public class Controller{
     private  ControllerDaoImpl mainCotrillerDao = new ControllerDaoImpl();
     private AdminView adminView = new AdminView();
@@ -74,7 +69,7 @@ public class Controller{
         }
     }
 
-    public void handleCustomer() throws SQLException{
+    private void handleCustomer() throws SQLException{
         customerView.printMenu();
         int answer = customerView.getIntAnswer("Choose option from menu");
 
@@ -87,7 +82,8 @@ public class Controller{
         //}
         else if (answer == 3){
             int chosenID = customerView.getIntAnswer("Choose ID to see product");
-            customerView.printProduct(customerController.getProductById(chosenID));
+            List<Product> listTosearch = customerController.getAllProducts();
+            customerView.printProductByID(listTosearch, chosenID);
         }
 
 
