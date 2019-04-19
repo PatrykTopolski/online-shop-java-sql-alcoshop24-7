@@ -89,10 +89,8 @@ public class Product {
 
     public String toString(){
 
-        String result = String.format("Product: %s, price: %2f",
-
-
-                getName(), getPrice());
+        String result = String.format("Product ID: %d, name: %s, price: %4f",
+                getId(), getName(), getPrice());
         return result;
     }
 }
