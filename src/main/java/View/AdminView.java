@@ -44,4 +44,10 @@ public class AdminView {
         int answer = sc.nextInt();
         return answer;
     }
+    public float getFloatAnswer(String message){
+        System.out.println(message);
+        Scanner sc = new Scanner(System.in);
+        float answer = sc.nextFloat();
+        return answer;
+    }
 }
