@@ -53,7 +53,7 @@ public class Controller{
                 System.out.println("no such item in the stock");
             }
         }else if(answer == 4){
-            System.out.println("todo");
+            System.out.println("developer was lazy, no adding product for now");
         }else if(answer == 5){
             List<Order> orders = admin.getAllOrders();
             adminView.printAllOrders(orders);
