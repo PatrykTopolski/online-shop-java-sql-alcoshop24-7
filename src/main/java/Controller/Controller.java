@@ -2,6 +2,8 @@ package Controller;
 
 import java.sql.SQLException;
 import java.util.*;
+
+import Model.Customer;
 import Model.User;
 import Model.Order;
 import Model.Product;
@@ -18,11 +20,13 @@ public class Controller{
     private CustomerController customerController = new CustomerController();
     private CustomerView customerView = new CustomerView();
     private boolean customerConsoleHandler = true;
+    String login = "";
+    String password = "";
 
     public void handleShop() throws SQLException{
 
-        String login = adminView.getStringAnswer("Enter your login: ");
-        String password = adminView.getStringAnswer("Enter your password: ");
+        login = adminView.getStringAnswer("Enter your login: ");
+        password = adminView.getStringAnswer("Enter your password: ");
         int adminType = 1;
         int customerType = 2;
 
@@ -70,16 +74,17 @@ public class Controller{
     }
 
     private void handleCustomer() throws SQLException{
+        Customer currentCustomer = new Customer(2, 2, login, password);
         customerView.printMenu();
         int answer = customerView.getIntAnswer("Choose option from menu");
 
         if (answer == 1){
             customerView.printProducts(customerController.getAllProducts());
         }
-//        else if(answer == 2){
-//            customerView.printOrders(customerController.getOrders());
-        //potrzeba jakos dostac sie do id customera z poziomu controllera
-        //}
+        else if(answer == 2){
+            List<Order> ordersToPrint = customerController.getOrders(currentCustomer.getId());
+            customerView.printOrders(ordersToPrint);
+        }
         else if (answer == 3){
             int chosenID = customerView.getIntAnswer("Choose ID to see product");
             List<Product> listTosearch = customerController.getAllProducts();
