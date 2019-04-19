@@ -6,8 +6,5 @@ public class Employee extends User {
         super(id, userTypeId, login, password);
     }
 
-    @Override
-    public void displayMenu() {
 
-    }
 }
