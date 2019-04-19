@@ -9,12 +9,9 @@ public abstract class User {
     public User(int id, int userTypeId, String login, String password) {
         this.id = id;
         this.userTypeId = userTypeId;
-
         this.login = login;
         this.password = password;
     }
-
-    public abstract void displayMenu();
 
     public int getId() {
         return id;
