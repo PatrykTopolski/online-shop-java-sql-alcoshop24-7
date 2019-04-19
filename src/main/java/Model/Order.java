@@ -47,6 +47,7 @@ public class Order{
         return false;
     }
 
+
     public String toString(){
         String result = String.format("Order ID: %d, Creation date: %h",
                 getID(), getCreationDate());
@@ -54,10 +55,13 @@ public class Order{
     }
 
 
+
     private enum Status{
         ORDERED,
         PAYED,
         COMPLETED;
+
+
     }
 
 
