@@ -38,11 +38,11 @@ public class CustomerDAOImpl implements CustomerDAO {
                 String name = resultSet.getString("Name");
                 int typeID = resultSet.getInt("TypeID");
                 float price = resultSet.getFloat("Price");
-                float alcoholContent = resultSet.getFloat("Vol.(%)");
-                float volume = resultSet.getFloat("Vol(l)");
+                //float alcoholContent = resultSet.getFloat("Vol.(%)");
+                //float volume = resultSet.getFloat("Vol(l)");
                 int amount = resultSet.getInt("Amount");
                 java.util.Date expDate = FORMAT.parse(resultSet.getString("ExpDate"));
-                java.sql.Date sqlExpDate = new java.sql.Date(expDate.getTime());
+               // java.sql.Date sqlExpDate = new java.sql.Date(expDate.getTime());
                 Product product = new Product(id, name, typeID, price, alcoholContent,
                         volume, amount, sqlExpDate);
 
