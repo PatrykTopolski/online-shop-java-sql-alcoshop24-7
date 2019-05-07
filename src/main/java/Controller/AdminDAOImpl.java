@@ -2,6 +2,7 @@ package Controller;
 
 import java.sql.*;
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -139,8 +140,9 @@ public class AdminDAOImpl implements AdminDAO {
 
             stmt = connection.prepareStatement(sqlStatments);
 
-            List<Product> products = new ArrayList<>(getAllProducts());
 
+
+            List<Product> products = new ArrayList<>(getAllProducts());
             stmt.setInt(1, products.size() + 1);
             stmt.setString(2, product.getName());
             stmt.setInt(3, product.getTypeId());
